@@ -6,7 +6,7 @@ I just wanted to mess around with GO and learn it more.
 
 ### Frontend
 - Vue
-- OAuth Solution (undecided which)
+- Auth0 OAuth
 
 ### Backend
 - Go
