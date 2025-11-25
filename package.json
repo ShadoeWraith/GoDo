@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:backend": "cd backend && go mod tidy && go run main.go",
+    "start:backend": "cd backend && go mod tidy && dotenv -e ./.env.local -e ./.env -- go run main.go",
     "start:frontend": "cd frontend && npm run dev",
     "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "build": "cd frontend && npm run build"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "dotenv-cli": "^11.0.0"
   }
 }

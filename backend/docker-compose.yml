@@ -4,15 +4,38 @@ services:
     restart: always
 
     ports:
-      - ${POSTGRES_PORT}:5432
+      - ${DB_PORT}:5432
 
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
 
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+
+  go-backend:
+    build:
+      context: ./
+      network: host
+
+    depends_on:
+      - db
+
+    env_file:
+      - .env
+
+    environment:
+      DB_HOST: db
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+
+    ports: 
+     - "8080:8080"
+
+    restart: unless-stopped
 
 volumes:
   postgres_data:

@@ -179,7 +179,7 @@ func DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	responseMessage := map[string]interface{}{
+	responseMessage := map[string]any{
 		"message":   fmt.Sprintf("Item ID %d deleted successfully", taskID),
 		"deletedId": taskID,
 	}
@@ -235,7 +235,7 @@ func RestoreDeletedTaskHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	responseMessage := map[string]interface{}{
+	responseMessage := map[string]any{
 		"message":    fmt.Sprintf("Item ID %d restored successfully", taskID),
 		"restoredId": taskID,
 	}

@@ -3,6 +3,7 @@ package db
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
 
 	"gorm.io/driver/postgres"
@@ -11,7 +12,7 @@ import (
 
 var DB *gorm.DB
 
-func AutoMigrate(models ...interface{}) error {
+func AutoMigrate(models ...any) error {
 
 	if DB == nil {
 		return errors.New("database connection is not initialized")
@@ -30,8 +31,20 @@ func AutoMigrate(models ...interface{}) error {
 	return nil
 }
 
-func InitGORM(models ...interface{}) error {
-	dsn := "user=godopsql password=password12345 host=localhost port=5432 dbname=godo sslmode=disable TimeZone=America/Los_Angeles"
+func getDSN() string {
+	dsn := fmt.Sprintf(
+		"user=%s password=%s host=%s port=%s dbname=%s sslmode=disable",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_NAME"),
+	)
+	return dsn
+}
+
+func InitGORM(models ...any) error {
+	dsn := getDSN()
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

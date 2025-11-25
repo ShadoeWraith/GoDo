@@ -10,7 +10,7 @@ type ErrorResponse struct {
 	Error  string `json:"error"`
 }
 
-func JSONResponse(w http.ResponseWriter, data interface{}, code int) {
+func JSONResponse(w http.ResponseWriter, data any, code int) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(code)
 
@@ -20,7 +20,7 @@ func JSONResponse(w http.ResponseWriter, data interface{}, code int) {
 	}
 }
 
-func JSONSuccess(w http.ResponseWriter, data interface{}, status int) {
+func JSONSuccess(w http.ResponseWriter, data any, status int) {
 	JSONResponse(w, data, status)
 }
 
