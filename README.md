@@ -1,14 +1,10 @@
 # Simple Todo app using GO Backend
 
-I just wanted to mess around with GO and learn it more.
+Simple todo app with Go Web API, Containerized Postgres DB, and [External CLI too (built in Go)](https://github.com/ShadoeWraith/GoDo-CLI) to allow offline task creation (mainly to learn, not that useful).
 
 ## Stack
-
-### Frontend
 - Vue
-- OAuth Solution (undecided which)
-
-### Backend
+- Auth0 OAuth
 - Go
 - Gorm (Go ORM)
 - Postgres DB
